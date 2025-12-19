@@ -6,7 +6,7 @@ class env extends uvm_env;
 	//rd_agent rd_agt;
 	scoreboard sb;
 	pixel_config pixel_cfg;
-  pixel_monitor mon;
+  	pixel_monitor mon;
 	//rd_agent_cfg rd_agt_cfg;
 	
 	function new(string name="scoreboard", uvm_component parent);
