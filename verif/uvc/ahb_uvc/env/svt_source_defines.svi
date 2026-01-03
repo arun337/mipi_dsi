@@ -1,0 +1,1 @@
+`define SVT_SOURCE_QUOTE_DESIGNWARE_HOME(leafname) `"/tools/synopsys/vc-vip_vV-2023.12/leafname`"

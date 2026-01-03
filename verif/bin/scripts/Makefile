@@ -1,4 +1,3 @@
-
 ifeq ($(GIT_HOME),)
     $(error You must set GIT_HOME to PATH to project repo directory.)
 endif
@@ -8,6 +7,7 @@ VERDI_HOME       ?= /tools/synopsys/verdi/R-2020.12-SP2
 RTL_HOME         ?= $(GIT_HOME)/RTL
 TB_HOME          ?= $(GIT_HOME)/verif
 VIP_HOME         ?= /tools/synopsys/vc-vip_vV-2023.12/vip
+#TEST_HOME 	?= /home/custom/cs_1st/Arunjith/design_dir
 #SOFT_DST_DIR    ?= $(PWD)/test.build
 #SCRIPT_HOME     ?= $(TB_HOME)/run/scripts
 #CDNS_UVM_HOME   ?= 
@@ -51,6 +51,9 @@ RTL_COMPILE_OPTS += $(RTL_HOME)/design.sv
 #VIP_COMPILE_OPTS += +incdir+$(UVC_HOME)/amba_ahb_vip/design_dir
 #VIP_COMPILE_OPTS += +incdir+$(UVC_HOME)/amba_ahb_vip/design_dir/include/sverilog 
 #VIP_COMPILE_OPTS += +incdir+$(UVC_HOME)/amba_ahb_vip/design_dir/src/sverilog/vcs
+VIP_COMPILE_OPTS += +incdir+$(GIT_HOME)
+#VIP_COMPILE_OPTS += +incdir+$(TEST_HOME)/include/systemverilog/svt_source_defines.svi
+
 VIP_COMPILE_OPTS += +incdir+$(VIP_HOME)/svt/common/latest/sverilog
 VIP_COMPILE_OPTS += +incdir+$(VIP_HOME)/svt/common/latest/sverilog/include
 VIP_COMPILE_OPTS += +incdir+$(VIP_HOME)/svt/common/latest/sverilog/src
@@ -61,7 +64,18 @@ VIP_COMPILE_OPTS += +incdir+$(VIP_HOME)/svt/amba_svt/latest
 VIP_COMPILE_OPTS += +incdir+$(VIP_HOME)/svt/amba_svt/latest/sverilog/src
 VIP_COMPILE_OPTS += +incdir+$(VIP_HOME)/svt/amba_svt/latest/sverilog/include
 VIP_COMPILE_OPTS += +incdir+$(VIP_HOME)/svt/amba_svt/latest/ahb_system_env_svt/sverilog/src
-
+VIP_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvc/ahb_uvc/env
+VIP_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvc/ahb_uvc/seq
+VIP_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvc/ahb_uvc/cfg
+VIP_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvc/pixel_uvc/env
+#VIP_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvc/pixel_uvc/seq
+#VIP_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvc/pixel_uvc/env
+#VIP_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvc/ppi_uvc
+VIP_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvm_tb/cfg
+VIP_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvm_tb/env
+VIP_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvm_tb/env/env_if
+VIP_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvm_tb/seq
+VIP_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvm_tb/test
 # AHB VIP COMPILE DEFINES 
 VIP_COMPILE_OPTS += +define+svt/amba_svt/latest/ahb_system_env_svtSVT_AHB_INCLUDE_USER_DEFINES
 VIP_COMPILE_OPTS += +define+SVT_UVM_TECHNOLOGY
@@ -71,6 +85,29 @@ VIP_COMPILE_OPTS += +define+SYNOPSYS_SV
 # TB directories inclusion for compile 
 TB_COMPILE_OPTS += -ntb_opts uvm-1.2
 TB_COMPILE_OPTS += +incdir+$(GIT_HOME)/verif/uvm_tb
+TB_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvc/pixel_uvc/env/agent
+TB_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvc/pixel_uvc
+TB_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvc/pixel_uvc/env/cfg
+TB_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvc/pixel_uvc/env
+TB_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvc/pixel_uvc/seq
+
+TB_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvc/ppi_uvc
+TB_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvc/ppi_uvc/seq
+TB_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvc/ppi_uvc/env
+TB_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvc/ppi_uvc/env/agent
+TB_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvc/ppi_uvc/env/cfg
+
+
+TB_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvm_tb/env
+TB_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvm_tb/test
+TB_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvm_tb/chk
+TB_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvm_tb/
+
+TB_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvc/ahb_uvc/env
+
+#TB_COMPILE_OPTS += +incdir+/home/custom/cs_1st/Arunjith/CS_MIPI/verif/uvm_tb/cfg
+
+
 #/ral
 #TB_COMPILE_OPTS += +incdir+$(GIT_HOME)/verif/uvm/env
 #TB_COMPILE_OPTS += +incdir+$(GIT_HOME)/verif/uvm/env/env_if
@@ -160,10 +197,10 @@ compile:
 	vcs $(COMMON_COMPILE_OPTS) $(VIP_COMPILE_OPTS) $(RTL_COMPILE_OPTS) $(TB_COMPILE_OPTS) 
 
 run:
-	./simv +UVM_TESTNAME=$(UVM_TEST) $(COMMON_RUN_OPTS) $(RUN_OPTS)
+	./simv +UVM_TESTNAME=$(UVM_TEST) \
+	       	$(COMMON_RUN_OPTS) $(RUN_OPTS)
 clean:
 	rm -rf ./simv* *.log diag* verdi* ucli.* *.fsdb novas* csrc verdiLog parti* vc_hdrs.h 
 
 all: compile run
-
 
